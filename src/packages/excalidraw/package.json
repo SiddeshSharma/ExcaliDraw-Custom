@@ -11,7 +11,7 @@
     "access": "public"
   },
   "description": "Excalidraw as a React component",
-  "repository": "https://github.com/excalidraw/excalidraw",
+  "repository": "https://github.com/SiddeshSharma/ExcaliDraw-Custom/",
   "license": "MIT",
   "keywords": [
     "excalidraw",
@@ -71,7 +71,7 @@
     "webpack-merge": "5.8.0"
   },
   "bugs": "https://github.com/excalidraw/excalidraw/issues",
-  "homepage": "https://github.com/excalidraw/excalidraw/tree/master/src/packages/excalidraw",
+  "homepage": "https://github.com/SiddeshSharma/ExcaliDraw-Custom/tree/master/src/packages/excalidraw",
   "scripts": {
     "gen:types": "tsc --project ../../../tsconfig-types.json",
     "build:umd": "rm -rf dist && cross-env NODE_ENV=production webpack --config webpack.prod.config.js && cross-env NODE_ENV=development webpack --config webpack.dev.config.js && yarn gen:types",
