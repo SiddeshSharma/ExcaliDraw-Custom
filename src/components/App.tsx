@@ -367,7 +367,7 @@ class App extends React.Component<AppProps, AppState> {
   actionManager: ActionManager;
   device: Device = deviceContextInitialValue;
   detachIsMobileMqHandler?: () => void;
-
+  
   private excalidrawContainerRef = React.createRef<HTMLDivElement>();
 
   public static defaultProps: Partial<AppProps> = {
@@ -425,42 +425,7 @@ class App extends React.Component<AppProps, AppState> {
     this.id = nanoid();
 
     this.library = new Library(this);
-    if (excalidrawRef) {
-      const readyPromise =
-        ("current" in excalidrawRef && excalidrawRef.current?.readyPromise) ||
-        resolvablePromise<ExcalidrawImperativeAPI>();
-
-      const api: ExcalidrawImperativeAPI = {
-        ready: true,
-        readyPromise,
-        updateScene: this.updateScene,
-        updateLibrary: this.library.updateLibrary,
-        addFiles: this.addFiles,
-        resetScene: this.resetScene,
-        getSceneElementsIncludingDeleted: this.getSceneElementsIncludingDeleted,
-        history: {
-          clear: this.resetHistory,
-        },
-        scrollToContent: this.scrollToContent,
-        getSceneElements: this.getSceneElements,
-        getAppState: () => this.state,
-        getFiles: () => this.files,
-        refresh: this.refresh,
-        setToast: this.setToast,
-        id: this.id,
-        setActiveTool: this.setActiveTool,
-        setCursor: this.setCursor,
-        resetCursor: this.resetCursor,
-        toggleMenu: this.toggleMenu,
-      } as const;
-      if (typeof excalidrawRef === "function") {
-        excalidrawRef(api);
-      } else {
-        excalidrawRef.current = api;
-      }
-      readyPromise.resolve(api);
-    }
-
+    
     this.excalidrawContainerValue = {
       container: this.excalidrawContainerRef.current,
       id: this.id,
@@ -477,11 +442,52 @@ class App extends React.Component<AppProps, AppState> {
       () => this.state,
       () => this.scene.getElementsIncludingDeleted(),
       this,
-    );
-    this.actionManager.registerAll(actions);
-
-    this.actionManager.registerAction(createUndoAction(this.history));
-    this.actionManager.registerAction(createRedoAction(this.history));
+      );
+      this.actionManager.registerAll(actions);
+      
+      this.actionManager.registerAction(createUndoAction(this.history));
+      this.actionManager.registerAction(createRedoAction(this.history));
+      if (excalidrawRef) {
+        const readyPromise =
+          ("current" in excalidrawRef && excalidrawRef.current?.readyPromise) ||
+          resolvablePromise<ExcalidrawImperativeAPI>();
+  
+        const api: ExcalidrawImperativeAPI = {
+          ready: true,
+          readyPromise,
+          updateScene: this.updateScene,
+          updateLibrary: this.library.updateLibrary,
+          addFiles: this.addFiles,
+          resetScene: this.resetScene,
+          getSceneElementsIncludingDeleted: this.getSceneElementsIncludingDeleted,
+          history: {
+            clear: this.resetHistory,
+          },
+          scrollToContent: this.scrollToContent,
+          getSceneElements: this.getSceneElements,
+          getAppState: () => this.state,
+          getFiles: () => this.files,
+          refresh: this.refresh,
+          setToast: this.setToast,
+          id: this.id,
+          setActiveTool: this.setActiveTool,
+          setCursor: this.setCursor,
+          resetCursor: this.resetCursor,
+          toggleMenu: this.toggleMenu,
+          //expose more tools
+          //brush size
+          actionManager: this.actionManager,
+          //opacity
+          //undo
+          //color 
+        } as const;
+        if (typeof excalidrawRef === "function") {
+          excalidrawRef(api);
+        } else {
+          excalidrawRef.current = api;
+        }
+        readyPromise.resolve(api);
+      }
   }
 
   private renderCanvas() {
@@ -633,14 +639,14 @@ class App extends React.Component<AppProps, AppState> {
                         closable={this.state.toast.closable}
                       />
                     )}
-                    {this.state.contextMenu && (
+                    {/* {this.state.contextMenu && (
                       <ContextMenu
                         items={this.state.contextMenu.items}
                         top={this.state.contextMenu.top}
                         left={this.state.contextMenu.left}
                         actionManager={this.actionManager}
                       />
-                    )}
+                    )} */}
                     <main>{this.renderCanvas()}</main>
                   </ExcalidrawActionManagerContext.Provider>
                 </ExcalidrawElementsContext.Provider>{" "}

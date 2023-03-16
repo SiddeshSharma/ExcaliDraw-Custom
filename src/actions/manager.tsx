@@ -160,13 +160,13 @@ export class ActionManager {
       };
 
       return (
-        <PanelComponent
-          elements={this.getElementsIncludingDeleted()}
-          appState={this.getAppState()}
-          updateData={updateData}
-          appProps={this.app.props}
-          data={data}
-        />
+          <PanelComponent
+            elements={this.getElementsIncludingDeleted()}
+            appState={this.getAppState()}
+            updateData={updateData}
+            appProps={this.app.props}
+            data={data}
+          />
       );
     }
 

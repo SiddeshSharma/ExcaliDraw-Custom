@@ -31,6 +31,7 @@ import Library from "./data/library";
 import type { FileSystemHandle } from "./data/filesystem";
 import type { ALLOWED_IMAGE_MIME_TYPES, MIME_TYPES } from "./constants";
 import { ContextMenuItems } from "./components/ContextMenu";
+import { ActionManager } from "./actions/manager";
 
 export type Point = Readonly<RoughPoint>;
 
@@ -515,6 +516,7 @@ export type ExcalidrawImperativeAPI = {
   setCursor: InstanceType<typeof App>["setCursor"];
   resetCursor: InstanceType<typeof App>["resetCursor"];
   toggleMenu: InstanceType<typeof App>["toggleMenu"];
+  actionManager: ActionManager
 };
 
 export type Device = Readonly<{

@@ -749,6 +749,7 @@ const ExcalidrawWrapper = () => {
             />
           );
         }}
+        zenModeEnabled={false}
       >
         {renderMenu()}
 

@@ -262,11 +262,12 @@ const LayerUI = ({
       elements,
     );
 
+    
     return (
       <FixedSideContainer side="top">
         {WelcomeScreenComponents.Center}
         <div className="App-menu App-menu_top">
-          <Stack.Col
+          {/* <Stack.Col
             gap={6}
             className={clsx("App-menu_top__left", {
               "disable-pointerEvents": appState.zenModeEnabled,
@@ -274,7 +275,8 @@ const LayerUI = ({
           >
             {renderCanvasActions()}
             {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
-          </Stack.Col>
+          </Stack.Col> */}
+          <div></div>
           {!appState.viewModeEnabled && (
             <Section heading="shapes" className="shapes-section">
               {(heading: React.ReactNode) => (
@@ -350,11 +352,11 @@ const LayerUI = ({
               },
             )}
           >
-            <UserList collaborators={appState.collaborators} />
+            {/* <UserList collaborators={appState.collaborators} />
             {renderTopRightUI?.(device.isMobile, appState)}
             {!appState.viewModeEnabled && (
               <LibraryButton appState={appState} setAppState={setAppState} />
-            )}
+            )} */}
           </div>
         </div>
       </FixedSideContainer>
@@ -410,7 +412,7 @@ const LayerUI = ({
           }
         />
       )}
-      {device.isMobile && (
+      {/* {device.isMobile && (
         <MobileMenu
           appState={appState}
           elements={elements}
@@ -430,7 +432,7 @@ const LayerUI = ({
           renderMenu={renderMenu}
           welcomeScreenCenter={WelcomeScreenComponents.Center}
         />
-      )}
+      )} */}
 
       {!device.isMobile && (
         <>
@@ -451,14 +453,14 @@ const LayerUI = ({
                 : {}
             }
           >
-            {renderFixedSideContainer()}
-            <Footer
+            {false && renderFixedSideContainer()}
+            {/* <Footer
               appState={appState}
               actionManager={actionManager}
               showExitZenModeBtn={showExitZenModeBtn}
               footerCenter={childrenComponents.FooterCenter}
               welcomeScreenHelp={WelcomeScreenComponents.HelpHint}
-            />
+            /> */}
             {appState.showStats && (
               <Stats
                 appState={appState}
